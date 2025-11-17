@@ -1,0 +1,60 @@
+# ---------------------------------------
+# Universal Alignment Pipeline Configuration
+# ---------------------------------------
+
+# General parameters
+threads: 24
+reference_root: /home/kchewe/projects/02.BSSNP/genomes
+output_root: /home/kchewe/projects/07.BISSNP/scripts/00_UNIVERSAL_ALIGNMENT_PIPELINE/results
+log_root: /home/kchewe/projects/07.BISSNP/scripts/00_UNIVERSAL_ALIGNMENT_PIPELINE/logs
+tmp_dir: /home/kchewe/tmp
+
+# Optional pipeline behavior
+skip_subsample: false           # TRUE = skip subsampling entirely
+subsample_fraction: 0.1         # Default 1% if subsampling not skipped
+
+skip_fastqc: false              # TRUE = skip FastQC step
+skip_trimming: false            # TRUE = skip fastp trimming step
+
+# Used previously — still respected:
+skip_qc: false                  # Legacy flag for trimming+fastqc together
+
+# Per-sample definitions
+samples:
+  A549_WGBS_ENCSR481JIW:
+    fastq_R1: /home/kchewe/projects/07.BISSNP/datasets/fastq/A549_ENCSR481JIW_ENCFF327QCK_WGBS_R1.fastq.gz
+    fastq_R2: /home/kchewe/projects/07.BISSNP/datasets/fastq/A549_ENCSR481JIW_ENCFF986UWM_WGBS_R2.fastq.gz
+    assembly: hg38
+    aligner: bismark
+    description: Whole-genome bisulfite sequencing of A549
+    tmp_dir: /home/kchewe/tmp/A549_WGBS_ENCSR481JIW
+
+  A549_WGS_ENCSR521ELB:
+    fastq_R1: /home/kchewe/projects/07.BISSNP/datasets/fastq/A549_ENCSR521ELB_ENCFF122NPY_WGS_R1.fastq.gz
+    fastq_R2: /home/kchewe/projects/07.BISSNP/datasets/fastq/A549_ENCSR521ELB_ENCFF846WHK_WGS_R2.fastq.gz
+    assembly: hg38
+    aligner: bwa-mem2
+    description: Whole-genome bisulfite sequencing of A549
+    tmp_dir: /home/kchewe/tmp/A549_WGBS_ENCSR521ELB
+
+  
+
+
+  # K562_WGS_ENCSR025GPQ:
+  #   fastq_R1: /home/kchewe/projects/07.BISSNP/datasets/fastq/A549_ENCSR521ELB_ENCFF122NPY_WGS_R1.fastq.gz
+  #   fastq_R2: /home/kchewe/projects/07.BISSNP/datasets/fastq/A549_ENCSR521ELB_ENCFF846WHK_WGS_R2.fastq.gz
+  #   assembly: hg38
+  #   aligner: bwa-mem2
+  #   description: Whole-genome sequencing of K562
+  #   tmp_dir: /home/kchewe/tmp/K562_WGS_ENCSR025GPQ
+
+  # K562_WGBS_ENCSR765JPC:
+  #   fastq_R1: /home/kchewe/projects/07.BISSNP/datasets/fastq/A549_ENCSR521ELB_ENCFF122NPY_WGS_R1.fastq.gz
+  #   fastq_R2: /home/kchewe/projects/07.BISSNP/datasets/fastq/A549_ENCSR521ELB_ENCFF846WHK_WGS_R2.fastq.gz
+  #   assembly: hg38
+  #   aligner: bwa-mem2
+  #   description: Whole-genome sequencing of K562
+  #   tmp_dir: /home/kchewe/tmp/K562_WGBS_ENCSR765JPC
+
+
+  

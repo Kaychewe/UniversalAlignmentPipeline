@@ -1,0 +1,141 @@
+# -----------------------------
+# General OS + Editor Files
+# -----------------------------
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*.tmp
+*~
+.vscode/
+.idea/
+
+# -----------------------------
+# Python / Conda / Jupyter
+# -----------------------------
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.env/
+venv/
+env/
+*.ipynb_checkpoints/
+.conda/
+conda-meta/
+
+# Snakemake working directory
+.snakejob/
+.snakemake/
+*.snakemake_timestamp
+
+# -----------------------------
+# Log files
+# -----------------------------
+logs/
+*.log
+*.err
+*.out
+
+# -----------------------------
+# Generated Results (LARGE)
+# -----------------------------
+results/
+output/
+benchmark/
+work/
+
+# Specifically ignore huge files inside results/
+results/**/aligned/
+results/**/dedup/
+results/**/sorted/
+results/**/rgfixed/
+results/**/qc/
+results/**/subsampled/
+results/**/trimmed/
+results/**/logs/
+
+# BAM, BAI, FASTQ, FASTA outputs
+*.bam
+*.bam.bai
+*.sam
+*.cram
+*.fastq
+*.fastq.gz
+*.fq
+*.fq.gz
+
+# Depth files
+*depth.txt
+*depth_summary.txt
+
+# QC Reports
+*fastp.json
+*fastp.html
+*flagstat.txt
+*idxstats.txt
+*stats.txt
+*qc.log
+
+# Subsample logs
+*subsample*.log
+
+# -----------------------------
+# Intermediate / Temporary files
+# -----------------------------
+tmp/
+temp/
+*.tmp
+*.tmp.*
+*.bak
+*.old
+*.lock
+
+# Bismark temporary chunks
+*.temp.*
+*_bismark_bt2_pe.bam
+*_bismark_bt2_pe_SE_report.txt
+*_bismark_bt2_PE_report.txt
+
+# Bowtie / BWA / BWA-MEM2
+*.amb
+*.ann
+*.bwt
+*.bwt.2bit.*
+*.pac
+*.sa
+*.0123
+
+# Index files
+*.fa.fai
+*.dict
+*.fai
+*.gzi
+
+# -----------------------------
+# Archives
+# -----------------------------
+*.tar.gz
+*.zip
+*.tgz
+
+# -----------------------------
+# R project artifacts
+# -----------------------------
+.Rhistory
+.Rproj.user/
+.Ruserdata
+
+# -----------------------------
+# Custom project folders
+# -----------------------------
+
+*/A549_*/
+*/K562_*/
+*/HCT116_*/
+
+# -----------------------------
+# ENCODE downloader cache
+# -----------------------------
+*.txt.temp
+ENCODE_cache/

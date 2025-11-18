@@ -79,37 +79,37 @@ rule all:
 # RULE 1: Subsample FASTQ
 ############################################################
 # TODO desired behavior. if skip subsampling use the full files via symbolic link 
-# rule subsample_fastq:
-#     input:
-#         r1 = lambda wc: SAMPLES[wc.sample]["fastq_R1"],
-#         r2 = lambda wc: SAMPLES[wc.sample]["fastq_R2"]
-#     output:
-#         r1_out = f"{OUT_ROOT}/{{sample}}/subsampled/{{sample}}_R1_sub.fastq.gz",
-#         r2_out = f"{OUT_ROOT}/{{sample}}/subsampled/{{sample}}_R2_sub.fastq.gz"
-#     params:
-#         script = "scripts/subsample_fastq.sh",
-#         frac = lambda wc: SAMPLES[wc.sample].get("subsample_fraction", SUBSAMPLE_FRACTION)
-#     log:
-#         f"{OUT_ROOT}/{{sample}}/logs/{{sample}}.subsample.log"
-#     message:
-#         "Subsampling {wildcards.sample}"
+rule subsample_fastq:
+    input:
+        r1 = lambda wc: SAMPLES[wc.sample]["fastq_R1"],
+        r2 = lambda wc: SAMPLES[wc.sample]["fastq_R2"]
+    output:
+        r1_out = f"{OUT_ROOT}/{{sample}}/subsampled/{{sample}}_R1_sub.fastq.gz",
+        r2_out = f"{OUT_ROOT}/{{sample}}/subsampled/{{sample}}_R2_sub.fastq.gz"
+    params:
+        script = "scripts/subsample_fastq.sh",
+        frac = lambda wc: SAMPLES[wc.sample].get("subsample_fraction", SUBSAMPLE_FRACTION)
+    log:
+        f"{OUT_ROOT}/{{sample}}/logs/{{sample}}.subsample.log"
+    message:
+        "Subsampling {wildcards.sample}"
 
-#     run:
-#         outdir = f"{OUT_ROOT}/{wildcards.sample}/subsampled"
-#         os.makedirs(outdir, exist_ok=True)
+    run:
+        outdir = f"{OUT_ROOT}/{wildcards.sample}/subsampled"
+        os.makedirs(outdir, exist_ok=True)
 
-#         has_r2 = input.r2 is not None
+        has_r2 = input.r2 is not None
 
-#         if SKIP_SUBSAMPLE:
-#             # Handle SE or PE
-#             shell("ln -sf {input.r1} {output.r1_out}")
-#             if has_r2:
-#                 shell("ln -sf {input.r2} {output.r2_out}")
-#         else:
-#             if has_r2:
-#                 shell("bash {params.script} {params.frac} {outdir} {input.r1} {input.r2} {wildcards.sample} &>> {log}")
-#             else:
-#                 shell("bash {params.script} {params.frac} {outdir} {input.r1} '' {wildcards.sample} &>> {log}")
+        if SKIP_SUBSAMPLE:
+            # Handle SE or PE
+            shell("ln -sf {input.r1} {output.r1_out}")
+            if has_r2:
+                shell("ln -sf {input.r2} {output.r2_out}")
+        else:
+            if has_r2:
+                shell("bash {params.script} {params.frac} {outdir} {input.r1} {input.r2} {wildcards.sample} &>> {log}")
+            else:
+                shell("bash {params.script} {params.frac} {outdir} {input.r1} '' {wildcards.sample} &>> {log}")
 
 
 ############################################################

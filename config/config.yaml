@@ -10,7 +10,7 @@ log_root: /home/kchewe/projects/07.BISSNP/scripts/00_UNIVERSAL_ALIGNMENT_PIPELIN
 tmp_dir: /home/kchewe/tmp
 
 # Optional pipeline behavior
-skip_subsample: false           # TRUE = skip subsampling entirely
+skip_subsample: true           # TRUE = skip subsampling entirely
 subsample_fraction: 0.1         # Default 1% if subsampling not skipped
 
 skip_fastqc: false              # TRUE = skip FastQC step

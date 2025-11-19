@@ -159,8 +159,9 @@ rule fastp_trim:
 
 ############################################################
 # RULE 3: align_reads — bwa-mem2 or bismark
-############################################################
 # memory hungry step.. scale down threads?
+############################################################
+
 rule align_reads:
     input:
         r1 = f"{OUT_ROOT}/{{sample}}/trimmed/{{sample}}_R1_clean.fastq.gz",
@@ -336,8 +337,11 @@ rule add_readgroup:
 
 ############################################################
 # RULE 8: QC BAM — stats, flagstat, depth
-############################################################
 # TODO: make this step optional
+# TODO: compute average coverage 
+# TODO: compute average depth
+############################################################
+
 rule qc_bam:
     input:
         bam = f"{OUT_ROOT}/{{sample}}/rgfixed/{{sample}}.rg.bam"

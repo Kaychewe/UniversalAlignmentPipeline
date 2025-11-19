@@ -13,6 +13,9 @@
 #   qc/<SAMPLE>.idxstats.txt
 #   qc/<SAMPLE>.depth.txt            (optional: full depth)
 #   qc/<SAMPLE>.depth_summary.txt    (average depth, % covered)
+# 
+# TODOs:
+# Update samtools to compute and emit average coverage statistics 
 # ------------------------------------------------------------
 
 set -euo pipefail
@@ -92,6 +95,10 @@ samtools depth -@ "$THREADS" "$IN_BAM" \
     ' > "$DEPTH_SUMMARY"
 
 mv "$QC_DIR/tmp.depth" "$DEPTH_OUT"
+
+
+# Coverage summary 
+samtools coverage 
 
 # ---------------------- Finish -------------------------------
 {
